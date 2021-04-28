@@ -4,13 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon node index.js"
   },
-  "author": "TripHub",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChatHubProd/ChatServer.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChatHubProd/ChatServer/issues"
+  },
+  "homepage": "https://github.com/ChatHubProd/ChatServer#readme",
   "dependencies": {
     "@types/socket.io": "^2.1.10",
     "express": "^4.17.1",
+    "nodemon": "^2.0.7",
     "socket.io": "^2.3.0"
   }
 }

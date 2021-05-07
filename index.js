@@ -14,8 +14,9 @@ socketServer.on('connection', socket => {
     console.log('Socket: client connected');
     //Invio il messaggio ricevuto a tutti i client
     socket.on('new-message', (nick, msg, cnl) => { 
+        socket.join(cnl);
         let message = {"nickname":nick, "message":msg, "channel":cnl}
-        socketServer.emit('resp-message', message);
+        socketServer.to(cnl).emit('resp-message', message);
         console.log(message);
     });
 });

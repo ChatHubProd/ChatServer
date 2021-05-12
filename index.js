@@ -22,27 +22,28 @@ const server = app.listen(port, () => {
 socketServer = socketIo(server);
 
 
-
-
-app.get('/', function (req, res, next) {
-    res.json({
-        user: "pinco pallino"
-    });
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
-        app.get('/requestoldmsg/:cnl', function (req, res, next) {
-            cnl = req.params.cnl;
-            MongoClient.connect(url, function (err, db) {
-                if (err) throw err;
-                var dbo = db.db("ChatHub");
-                dbo.collection(cnl).find().toArray(function (err, results) {
-                    if (err) throw err;
-                    this.result = results;
-                    res.send(result)
-                    db.close();
-                });
-            });
+
+
+
+app.get('/requestoldmsg/:cnl', function (req, res, next) {
+    cnl = req.params.cnl;
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("ChatHub");
+        dbo.collection(cnl).find().toArray(function (err, results) {
+            if (err) throw err;
+            this.result = results;
+            res.send(result)
+            db.close();
         });
+    });
+});
 
 
 
